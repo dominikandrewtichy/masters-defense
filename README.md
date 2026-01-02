@@ -1,1 +1,1 @@
-# masters-defense
+# Master's thesis defense presentation
