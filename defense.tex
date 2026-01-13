@@ -7,20 +7,26 @@
 \usepackage{lmodern}
 \usepackage{csquotes}
 \usepackage{expl3,biblatex}
-\addbibresource{example.bib}
+\addbibresource{main.bib}
 \usepackage{booktabs}
 \usetheme[
   workplace=fi,
   fonts=none,
 ]{MU}
+\usepackage{textalpha}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{appendixnumberbeamer}
 
-\title[Short Presentation Title]{Full Presentation Title}
-\subtitle[Short Presentation Subtitle]{Full Presentation Subtitle}
-\author[R. Speedwagon]{Robert Speedwagon\texorpdfstring{\\}{, }personal-id@mail.muni.cz}
+\title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
+\subtitle[Master's Thesis Defense]{Master's Thesis Defense}
+\author[D. Tichý]{Dominik Tichý\texorpdfstring{\\}{, }Supervisor: RNDr. Tomáš Raček, Ph.D.}
 \institute[FI MU]{Faculty of Informatics, Masaryk University}
-\date{\today}
+\date{February 2, 2025}
 \subject{Presentation Subject}
-\keywords{the, presentation, keywords}
+\keywords{Mol*, Mol* VS, MolViewSpec, MolViewStories, volumetric data, segmentations, visualization, bioinformatics}
+
 \begin{document}
 
 \begin{frame}[plain]
@@ -30,98 +36,89 @@
 \section[Short Section 1 Name]{Full Section 1 Name}
 \subsection[Short Subsection 1 Name]{Full Subsection 1 Name}
 
-\begin{frame}{Frame Title}{Frame Subtitle}
-plain text, \structure{page structure}, \alert{emphasis}
-\begin{itemize}
-  \item a single-line bullet list item
-  \item a bullet list item that is quite long (in order to force a line break),
-    which also contains \alert{emphasized text}
-  \begin{itemize}
-    \item a second-level list item
-    \begin{itemize}
-      \item a third-level list item
-    \end{itemize}
-    \item \alert{an emphasized second-level list item}
-  \end{itemize}
-\end{itemize}
-\begin{enumerate}
-  \item a numbered list item
-  \begin{enumerate}
-    \item a second-level list item containing a math expression
-      \[ E = mc^2 \]
-      and a citation \cite{einstein1905tragheit}
-  \end{enumerate}
-\end{enumerate}
+\begin{frame}{Motivation}
 \end{frame}
 
+\section[Short Section 2 Name]{Full Section 2 Name}
 \subsection[Short Subsection 2 Name]{Full Subsection 2 Name}
 
-\begin{frame}{Text Blocks}
-text above a block\footnote{a footnote with an \url{https://address.edu}}
-\begin{block}{Block}
-  text in a block
-\end{block}
-\begin{exampleblock}{Example Block}
-  text in a block
-\end{exampleblock}
-\begin{alertblock}{Emphasized Block}
-  text in a block
-\end{alertblock}
+\begin{frame}{Goals}
 \end{frame}
 
-\begin{frame}{Figures}
-\begin{figure}
-  \includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{cow-black.mps}
-  \caption{A standing Holstein Friesian cow%
-    \footnote{%
-      Will the cow ever lie down again?
-      We may never know.
-      \cite{tolkamp10cows}
-    }%
-  }
-\end{figure}
-\end{frame}
-
+\section[Short Section 3 Name]{Full Section 3 Name}
 \subsection[Short Subsection 3 Name]{Full Subsection 3 Name}
 
-\def\age(#1-#2-#3){%
-  \the\numexpr(
-    \year - #1
-    \ifnum\month<#2
-      - 1
-    \else
-      \ifnum\month=#2
-        \ifnum\day<#3
-          - 1
-        \fi
-      \fi
-    \fi
-  )%
-}
-
-\begin{frame}{Tables}
-\begin{table}
-  \begin{tabular}{llc}
-    First Name & Surname & Age \\ \midrule
-    Albert & Einstein & \age(1879-03-14) \\
-    Marie & Curie & \age(1867-11-07) \\
-    Thomas & Edison & \age(1847-02-11) \\
-  \end{tabular}
-  \caption{The great minds of the 19th century}
-\end{table}
+\begin{frame}{Solution}
 \end{frame}
 
-\section{\bibname}
-\begin{frame}[t, allowframebreaks]{\bibname}
-\printbibliography[heading=none]
+\section[Short Section 4 Name]{Full Section 4 Name}
+\subsection[Short Subsection 4 Name]{Full Subsection 4 Name}
+
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item conversion library
+    \item web application
+    \item contributed to the design of the new version of Mol* VS
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[plain]
-\vfill
-\centerline{Thank You for Your Attention!}
-\vfill\vfill
+% \section{\bibname}
+% \begin{frame}[t, allowframebreaks]{\bibname}
+% \printbibliography[heading=none]
+% \end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt] at (current page.center) {
+        \includegraphics[width=\paperwidth,height=\paperheight]{images/thank-you.png}
+    };
+    \node[text=white, font=\Huge\bfseries, align=center] at (current page.center) {
+        Thank You for Your Attention!
+    };
+  \end{tikzpicture}
+\end{frame}
+
+\appendix
+
+\section{Otázky oponenta}
+
+\subsection[Otázka 1]{Otázka 1}
+
+\begin{frame}
+  \begin{block}{Otázka oponenta 1}
+    TODO
+  \end{block}
+  \begin{itemize}
+    \item answer
+    \item answer
+  \end{itemize}
+\end{frame}
+
+\subsection[Otázka 2]{Otázka 2}
+
+\begin{frame}
+  \begin{block}{Otázka oponenta 2}
+    TODO
+  \end{block}
+  \begin{itemize}
+    \item answer
+    \item answer
+  \end{itemize}
+\end{frame}
+
+\subsection[Otázka 3]{Otázka 3}
+
+\begin{frame}
+  \begin{block}{Otázka oponenta 3}
+    TODO
+  \end{block}
+  \begin{itemize}
+    \item answer
+    \item answer
+  \end{itemize}
 \end{frame}
 
 \makeoutro
+\addtocounter{framenumber}{-1}
 
 \end{document}
