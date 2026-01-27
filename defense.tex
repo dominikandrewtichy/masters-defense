@@ -7,7 +7,7 @@
 \usepackage{lmodern}
 \usepackage{csquotes}
 \usepackage{expl3,biblatex}
-\addbibresource{main.bib}
+\addbibresource{sources.bib}
 \usepackage{booktabs}
 \usetheme[
   workplace=fi,
@@ -21,7 +21,7 @@
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
-\author[D. Tichý]{Dominik Tichý\texorpdfstring{\\}{, }Advisor: RNDr. Tomáš Raček, Ph.D.}
+\author[D. Tichý]{Author:\hspace{0.63em}Bc. Dominik Tichý\texorpdfstring{\\}{, }Advisor: RNDr. Tomáš Raček, Ph.D.}
 \institute[FI MU]{Faculty of Informatics, Masaryk University}
 \date{January 30, 2026}
 \subject{Presentation Subject}
@@ -35,8 +35,8 @@
 
 \begin{frame}{Motivation}
   \begin{itemize}
-    \item Rapid growth of microscopy data (e.g., Cryo-EM, Cryo-ET) \cite{kuhlbrandt2014resolution}
-    \item Critical in structural biology and drug design (e.g., SARS-CoV-2 spike protein characterization) \cite {wrapp2020covid}
+    \item Rapid growth of microscopy data (e.g., Cryo-EM, Cryo-ET) \footfullcite{kuhlbrandt2014resolution}
+    \item Critical in structural biology and drug design (e.g., SARS-CoV-2 spike protein characterization) \footfullcite {wrapp2020covid}
     \item Need for a web-based tool to visualize and annotate
   \end{itemize}
 \end{frame}
@@ -79,6 +79,8 @@
   \end{itemize}
 \end{frame}
 
+\section[Data Mapping]{Data Mapping}
+
 % TODO: add an image of a volume, it's segmentation, and annotation
 \begin{frame}{Data Representation}
   \begin{itemize}
@@ -93,12 +95,37 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Conversion Library --- Data Mapping}
+\begin{frame}{Data Mapping}
   \begin{figure}
     \includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{./images/mapping.pdf}
     \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
+
+\begin{frame}{Volumetric Data}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/volume-mapping-crop.pdf}
+    % \caption{Mapping CVSX to MVSX}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Lattice Segmentation}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.85\textheight,keepaspectratio]{./images/lattice-mapping-crop.pdf}
+    % \caption{Mapping CVSX to MVSX}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Mesh \& Geometric Segmentation}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.85\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
+    % \caption{Mapping CVSX to MVSX}
+  \end{figure}
+\end{frame}
+
 
 \begin{frame}{Conversion Library --- Architecture}
   \textbf{``ETL'' Architecture:}
@@ -107,31 +134,32 @@
     \item \textbf{Transform:} Convert to intermediate representation
     \item \textbf{Load:} Serialize to MVSX or MVStory format
   \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./images/etl-overview-crop.pdf}
+    % \caption{Mapping CVSX to MVSX}
+  \end{figure}
 \end{frame}
 
-% \begin{frame}{Conversion Library --- Data Mapping}
-%   \begin{tabular}{@{}l@{\hspace{1em}}c@{\hspace{1em}}l@{}}
-%     \textbf{CVSX Source} & & \textbf{MVS Target} \\
-%     \midrule
-%     Volume (3D) & $\rightarrow$ & \texttt{volume} (isosurface) \\
-%     Volume (2D slice) & $\rightarrow$ & \texttt{volume} (grid slice) \\
-%     \addlinespace
-%     Lattice Segmentation & $\rightarrow$ & \texttt{volume} (isosurface) \\
-%                          & $\rightarrow$ & \texttt{mesh} (via Marching Cubes) \\
-%     \addlinespace
-%     Mesh Segmentation & $\rightarrow$ & \texttt{mesh} (direct) \\
-%     \addlinespace
-%     Geometric Primitives & $\rightarrow$ & \texttt{primitives} (sphere, box, \\
-%     (sphere, box, ellipsoid, cylinder) & & ellipsoid, cylinder) \\
-%     \addlinespace
-%     Geometric Primitives & $\rightarrow$ & \texttt{mesh} (procedural) \\
-%     (pyramid, tapered cylinder) & & \\
-%   \end{tabular}
+\begin{frame}{Conversion Library --- Extract}
+  \begin{figure}
+    \centering
+    \subfigure{\includegraphics[width=0.25\textwidth,keepaspectratio]{images/extraction-crop.pdf}}
+    \hspace{1cm}
+    \subfigure{\includegraphics[width=0.45\textwidth,keepaspectratio]{images/cvsx_entry-crop.pdf}}
+    % \caption[Extraction]{Extraction of CVSX data.}
+  \end{figure}  
+\end{frame}
 
-%   \small Annotations (colors, labels, tooltips) are mapped to MVS node parameters.
-% \end{frame}
+\begin{frame}{Conversion Library --- Transform \& Load}
+  \begin{figure}
+    \centering
+    \subfigure{\includegraphics[width=0.25\textwidth,keepaspectratio]{images/transform-crop.pdf}}
+    \hspace{1cm}
+    \subfigure{\includegraphics[width=0.45\textwidth,keepaspectratio]{images/transform-load.pdf}}
+    % \caption[Extraction]{Extraction of CVSX data.}
+  \end{figure}  
+\end{frame}
 
-% TODO: add images of fixed visualizations
 \begin{frame}{Conversion Library --- Results}
   \textbf{Visual Fidelity:}
   \begin{itemize}
@@ -140,7 +168,7 @@
 
   \textbf{File Size:}
   \begin{itemize}
-    \item Minimal overhead ($<5\%$) for most data types
+    \item Minimal overhead ($<5\%$) for most mappings
     \item Except for lattice-to-mesh conversion ($10-50\%$)
   \end{itemize}
   
@@ -158,7 +186,7 @@
     \centering
     \subfigure[CVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-cvsx.png}}
     \subfigure[MVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-mvsx.png}}
-    \caption[Correction of missing annotations]{Correction of missing color annotations for dataset IDR-6001240.}
+    \caption[Correction of missing color annotations]{Correction of missing color annotations.}
   \end{figure}  
 \end{frame}
 
@@ -167,10 +195,18 @@
     \centering
     \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-cvsx.png}}
     \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-mvsx.png}}
-    \caption[Correction of isosurface capping]{Correction of isosurface capping for dataset IDR-13457537.}
+    \caption[Correction of isosurface capping]{Correction of isosurface capping.}
   \end{figure}  
 \end{frame}
 
+\begin{frame}{Conversion Library --- Improvements}
+  \begin{figure}
+    \centering
+    \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/contour-missing.png}}
+    \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/contour-present.png}}
+    \caption[Correction of missing author-defined contour levels]{Correction of missing author-defined contour levels.}
+  \end{figure}  
+\end{frame}
 
 \begin{frame}{Web Application}
   \begin{itemize}
@@ -209,14 +245,14 @@
 
 \begin{frame}{Web Application --- Results}
   \begin{figure}
-    \includegraphics[width=1\textwidth,height=0.7\textheight,keepaspectratio]{./images/dashboard.png}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/dashboard2.png}
     \caption{User's dashboard in the web application.}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Web Application --- Results}
   \begin{figure}
-    \includegraphics[width=1\textwidth,height=0.7\textheight,keepaspectratio]{./images/preview page.png}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/viewer2.png}
     \caption{Annotations editor the web application.}
   \end{figure}
 \end{frame}
@@ -226,7 +262,7 @@
   \begin{itemize}
     \item Replaced the Mol* VS client code with declarative MolViewSpec
     \item Corrected rendering artifacts of the legacy client
-    \item Democratized access to non-programmers
+    \item Provide access to non-programmers
     \item Simplified getting volume and segmentation data into MolViewStories
     \item Blueprint for the next generation of the Mol* VS preprocessor
   \end{itemize}
@@ -238,10 +274,31 @@
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]
-Thank You for Your Attention!
-\\
-\textbf{TODO: add an epic AI generated image}
+\vfill
+\centerline{Thank You for Your Attention!}
+\vfill\vfill
 \end{frame}
+
+\newenvironment{outroframe}{
+  \begingroup
+  \setbeamercolor{background canvas}{bg=mubeamer@label}
+  \setbeamercolor{normal text}{fg=white}
+  \usebeamercolor[fg]{normal text}
+  \begin{frame}[plain, environment=outroframe]
+  \vfill
+  \centering
+}{
+  \vfill
+  \end{frame}
+  \endgroup
+}
+\begin{outroframe}
+    \Huge \textbf{Questions?}
+    
+    \vspace{1cm}
+    \large
+    contact@mail.muni.cz
+\end{outroframe}
 
 \appendix
 
@@ -251,11 +308,12 @@ Thank You for Your Attention!
 
 \begin{frame}
   \begin{block}{Otázka oponenta 1}
-    TODO
+    Narazil jste na nějakou vlastnost nebo typ dat z formátu CVSX, kterou nebylo možno převést do nových formátů MVSX a MVStory?
   \end{block}
   \begin{itemize}
-    \item answer
-    \item answer
+    \item Ano, uživatelské rozhraní pro Mol* VS klienta a CVSX metadata (např. dimenzionalita volumetrických dat)
+    \item Uživatelské rozhraní lze nahradit novým rozšířením Mol* za pomocí metadat v MVS souboru
+    \item MVS metadata lze využít i pro CVSX metadata
   \end{itemize}
 \end{frame}
 
@@ -263,11 +321,11 @@ Thank You for Your Attention!
 
 \begin{frame}
   \begin{block}{Otázka oponenta 2}
-    TODO
+    Je nějaký limit velikosti dat, nad který není vaše webová aplikace schopna data zobrazit?
   \end{block}
   \begin{itemize}
-    \item answer
-    \item answer
+    \item Ano, velikost dat je omezena možnostmi Mol* Vieweru
+    \item Závisí na velikosti RAM stroje a nastavení limitů pro paměť v prohlížeči
   \end{itemize}
 \end{frame}
 
@@ -275,10 +333,9 @@ Thank You for Your Attention!
 
 \begin{frame}
   \begin{block}{Otázka oponenta 3}
-    TODO
+    Jak by bylo možno odstranit drobné vizuální odchylky v renderování, které zmiňujete v sekci 3.4.4?
   \end{block}
   \begin{itemize}
-    \item answer
     \item answer
   \end{itemize}
 \end{frame}
