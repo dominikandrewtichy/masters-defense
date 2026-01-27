@@ -13,8 +13,13 @@
   workplace=fi,
   fonts=none,
 ]{MU}
+\setbeamerfont{footnote}{size=\scriptsize}
 \usepackage{textalpha}
 \usepackage{subfigure}
+\makeatletter
+\renewcommand{\@thesubfigure}{\space}
+\renewcommand{\thesubfigure}{}
+\makeatother
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
@@ -33,6 +38,8 @@
 \maketitle
 \end{frame}
 
+\section[Motivation]{Motivation}
+
 \begin{frame}{Motivation}
   \begin{itemize}
     \item Rapid growth of microscopy data (e.g., Cryo-EM, Cryo-ET) \footfullcite{kuhlbrandt2014resolution}
@@ -41,9 +48,22 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Technologies}
+\begin{frame}{Theory}{Volumes}
   \begin{itemize}
-    \item Mol* platform
+    \item 3D scalar grids representing electron density or potential
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Theory}{Segmentations}
+  \begin{itemize}
+    \item Convert intensity signals into discrete objects
+    \item Lattices, meshes, geometric primitives
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mol*}
+  \begin{itemize}
+    \item Mol* platform \footfullcite{Sehnal2021Molstar}
     \item Mol* Volumes and Segmentation (Mol* VS) \footfullcite{Chareshneu2024Volseg}
     \begin{itemize}
       \item Difficult to use and maintain
@@ -55,14 +75,10 @@
       \item Declarative standard
       \item Describes ``what'' the scene looks like, not ``how'' to build it
     \end{itemize}
-    \item MolViewStories
-    \begin{itemize}
-      \item UI builder for MolViewSpec
-    \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Mol* VS Architecture}
+\begin{frame}{Mol*}{File Formats}
   \begin{figure}
     \includegraphics[width=1\textwidth,height=0.8\textheight,keepaspectratio]{./images/volseg-arch.pdf}
     % \caption{Mol* VS Architecture}
@@ -71,10 +87,12 @@
 
 
 \begin{frame}{Goals}
+  \begin{alertblock}{Thesis Objective}
+    Show that MolViewSpec can be used to visualize and annotate volumetric and segmentation data in Mol*
+  \end{alertblock}
   \begin{itemize}
-    \item Move the legacy Mol* VS client to MolViewSpec
-    \item \textbf{Contribution 1:} Create a conversion library
-    \item \textbf{Contribution 2:} Web application for non-technical users
+    \item \textbf{Goal 1:} Create a conversion library (CVSX $\rightarrow$ MVSX)
+    \item \textbf{Goal 2:} Web application for non-technical users
   \end{itemize}
 \end{frame}
 
@@ -131,36 +149,15 @@
 
 
 \begin{frame}{Conversion Library --- Architecture}
-  \textbf{``ETL'' Architecture:}
   \begin{itemize}
-    \item \textbf{Extract:} Validate and parse CVSX
+    \item \textbf{Extract:} Validate and parse CVSX file
     \item \textbf{Transform:} Convert to intermediate representation
-    \item \textbf{Load:} Serialize to MVSX or MVStory format
+    \item \textbf{Load:} Serialize to MVSX file
   \end{itemize}
   \begin{figure}
     \includegraphics[width=0.9\textwidth,keepaspectratio]{./images/etl-overview-crop.pdf}
     % \caption{Mapping CVSX to MVSX}
   \end{figure}
-\end{frame}
-
-\begin{frame}{Conversion Library --- Extract}
-  \begin{figure}
-    \centering
-    \subfigure{\includegraphics[width=0.25\textwidth,keepaspectratio]{images/extraction-crop.pdf}}
-    \hspace{1cm}
-    \subfigure{\includegraphics[width=0.45\textwidth,keepaspectratio]{images/cvsx_entry-crop.pdf}}
-    % \caption[Extraction]{Extraction of CVSX data.}
-  \end{figure}  
-\end{frame}
-
-\begin{frame}{Conversion Library --- Transform \& Load}
-  \begin{figure}
-    \centering
-    \subfigure{\includegraphics[width=0.25\textwidth,keepaspectratio]{images/transform-crop.pdf}}
-    \hspace{1cm}
-    \subfigure{\includegraphics[width=0.45\textwidth,keepaspectratio]{images/transform-load.pdf}}
-    % \caption[Extraction]{Extraction of CVSX data.}
-  \end{figure}  
 \end{frame}
 
 \begin{frame}{Conversion Library --- Results}
@@ -179,8 +176,7 @@
   \begin{itemize}
     \item Fixed missing volumes, restored color annotations
     \item Corrected author-defined contour levels
-    \item Proper isosurface capping (watertight meshes)
-    \item Batched geometric primitives (performance improvement)
+    \item Proper isosurface capping
   \end{itemize}
 \end{frame}
 
@@ -188,49 +184,62 @@
   \begin{figure}
     \centering
     \subfigure[CVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-cvsx.png}}
+    \hspace{1cm}
     \subfigure[MVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-mvsx.png}}
-    \caption[Correction of missing color annotations]{Correction of missing color annotations.}
   \end{figure}  
+  \textbf{Improvements:}
+  \begin{itemize}
+    \item \alert{Fixed missing volumes, restored color annotations}
+    \item Corrected author-defined contour levels
+    \item Proper isosurface capping
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
     \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-cvsx.png}}
+    \hspace{1.5cm}
     \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-mvsx.png}}
-    \caption[Correction of isosurface capping]{Correction of isosurface capping.}
   \end{figure}  
+  \textbf{Improvements:}
+  \begin{itemize}
+    \item Fixed missing volumes, restored color annotations
+    \item \alert{Corrected author-defined contour levels}
+    \item Proper isosurface capping
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
     \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/contour-missing.png}}
+    \hspace{1.5cm}
     \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/contour-present.png}}
-    \caption[Correction of missing author-defined contour levels]{Correction of missing author-defined contour levels.}
   \end{figure}  
+  \begin{itemize}
+    \item Fixed missing volumes, restored color annotations
+    \item Corrected author-defined contour levels
+    \item \alert{Proper isosurface capping}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Web Application}
   \begin{itemize}
     \item The library is a CLI tool; biologists need a GUI
-    \item \textbf{Dashboard}: Manage entries and storage quotas
     \item \textbf{WYSIWYG Editor}: Interactively update colors, opacities, and isovalues
     \item \textbf{Sharing}: Persistent URLs and export to MolViewStories
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Web Application --- Architecture}
+\begin{frame}{Web Application}{Implementation}
   \textbf{Main Components:}
   \begin{itemize}
-    \item \textbf{Frontend:} React SPA
+    \item \textbf{Frontend:} React
     \item \textbf{Backend:} FastAPI
     \item \textbf{Storage:} PostgreSQL + MinIO
-    \item \textbf{Auth:} EINFRA AAI
+    \item \textbf{Auth:} e-INFRA AAI 
   \end{itemize}
-\end{frame}
-
-\begin{frame}{Web Application --- Deployment}
   \textbf{Infrastructure:}
   \begin{itemize}
     \item Containerized with Docker
@@ -238,25 +247,11 @@
     \item Helm charts for configuration management
     \item CI/CD pipeline via GitHub Actions
   \end{itemize}
-
-  \textbf{Available at:}
-  \begin{itemize}
-    \item \small{\url{https://web.volseg-editor.dyn.cloud.e-infra.cz/}}
-    \item \small{\url{https://api.volseg-editor.dyn.cloud.e-infra.cz/}}
-  \end{itemize}
 \end{frame}
 
-\begin{frame}{Web Application --- Results}
+\begin{frame}{Web Application}{Results}
   \begin{figure}
-    \includegraphics[width=1\textwidth,keepaspectratio]{./images/dashboard2.png}
-    \caption{User's dashboard in the web application.}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Web Application --- Results}
-  \begin{figure}
-    \includegraphics[width=1\textwidth,keepaspectratio]{./images/viewer2.png}
-    \caption{Annotations editor in the web application.}
+    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/entry-preview.png}
   \end{figure}
 \end{frame}
 
@@ -266,31 +261,9 @@
     \item Replaced the Mol* VS client with MolViewSpec
     \item Conversion library for data migration
     \item Web application for visualizing and sharing
-    \item Contributed to a paper \cite{Chareshneu2024Volseg}
+    \item Contributed to a paper \footfullcite{Chareshneu2024Volseg}
   \end{itemize}
 \end{frame}
-
-\section{\bibname}
-\begin{frame}[t, allowframebreaks]{\bibname}
-\printbibliography[heading=none]
-\end{frame}
-
-\newenvironment{outroframe}{
-  \begingroup
-  \setbeamercolor{background canvas}{bg=mubeamer@label}
-  \setbeamercolor{normal text}{fg=black}
-  \usebeamercolor[fg]{normal text}
-  \begin{frame}[plain, noframenumbering, environment=outroframe]
-  \vfill
-  \centering
-}{
-  \vfill
-  \end{frame}
-  \endgroup
-}
-\begin{outroframe}
-    \Huge \textbf{Thank You for Your Attention}
-\end{outroframe}
 
 \appendix
 
