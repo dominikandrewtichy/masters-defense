@@ -41,7 +41,6 @@
   \end{itemize}
 \end{frame}
 
-% TODO: add an image of the mol* vs architecture
 \begin{frame}{Technologies}
   \begin{itemize}
     \item Mol* platform
@@ -73,32 +72,36 @@
 
 \begin{frame}{Goals}
   \begin{itemize}
-    \item Move the legacy Mol* VS Client to MolViewSpec
-    \item \textbf{Contribution 1:} Create a Python Conversion Library (CVSX → MVSX/MVStory)
-    \item \textbf{Contribution 2:} Web application for non-technical users to convert, edit, and share biological stories
+    \item Move the legacy Mol* VS client to MolViewSpec
+    \item \textbf{Contribution 1:} Create a conversion library
+    \item \textbf{Contribution 2:} Web application for non-technical users
   \end{itemize}
 \end{frame}
 
-\section[Data Mapping]{Data Mapping}
-
-% TODO: add an image of a volume, it's segmentation, and annotation
-\begin{frame}{Data Representation}
+\begin{frame}{Data Mapping}
   \begin{itemize}
-    \item \textbf{Volumes:} 3D scalar grids representing electron density or potential
-    \item \textbf{Segmentations:} Convert intensity signals into discrete objects
+    \item \textbf{Volumes}
     \begin{itemize}
-      \item Lattice
-      \item Meshes
-      \item Geometric primitives
+      \item 3D scalar grids representing electron density or potential
+      \item Isosurface, grid slice
     \end{itemize}
-    \item \textbf{Annotations:} Define semantic meaning and visual styling
+    \item \textbf{Segmentations}
+    \begin{itemize}
+      \item Convert intensity signals into discrete objects
+      \item Lattices, meshes, geometric primitives
+    \end{itemize}
+    \item \textbf{Annotations}
+    \begin{itemize}
+      \item Define semantic meaning and visual styling
+      \item Examples include color, opacity, and labels
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Data Mapping}
   \begin{figure}
-    \includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{./images/mapping.pdf}
-    \caption{Mapping CVSX to MVSX}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/segmentation-comparison.png}
+    % \caption{Segmentation types.}
   \end{figure}
 \end{frame}
 
@@ -121,7 +124,7 @@
 \begin{frame}{Mesh \& Geometric Segmentation}
   \begin{figure}
     \centering
-    \includegraphics[height=0.85\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
+    \includegraphics[height=0.9\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
     % \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
@@ -238,8 +241,8 @@
 
   \textbf{Available at:}
   \begin{itemize}
-    \item Web: \\ \url{https://web.volseg-editor.dyn.cloud.e-infra.cz/}
-    \item API: \\ \url{https://api.volseg-editor.dyn.cloud.e-infra.cz/docs}
+    \item \small{\url{https://web.volseg-editor.dyn.cloud.e-infra.cz/}}
+    \item \small{\url{https://api.volseg-editor.dyn.cloud.e-infra.cz/}}
   \end{itemize}
 \end{frame}
 
@@ -253,18 +256,21 @@
 \begin{frame}{Web Application --- Results}
   \begin{figure}
     \includegraphics[width=1\textwidth,keepaspectratio]{./images/viewer2.png}
-    \caption{Annotations editor the web application.}
+    \caption{Annotations editor in the web application.}
   \end{figure}
 \end{frame}
 
 
 \begin{frame}{Conclusion}
   \begin{itemize}
-    \item Replaced the Mol* VS client code with declarative MolViewSpec
-    \item Corrected rendering artifacts of the legacy client
+    \item Replaced the Mol* VS client with MolViewSpec
+    \begin{itemize}
+      \item Corrected rendering artifacts of the legacy client
+      \item Blueprint for the next generation of the Mol* VS
+    \end{itemize}
+    \item Conversion library for data migration
     \item Provide access to non-programmers
-    \item Simplified getting volume and segmentation data into MolViewStories
-    \item Blueprint for the next generation of the Mol* VS preprocessor
+    \item Contributed to a paper \cite{Chareshneu2024Volseg}
   \end{itemize}
 \end{frame}
 
