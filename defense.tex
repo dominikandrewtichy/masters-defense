@@ -45,13 +45,13 @@
 \begin{frame}{Technologies}
   \begin{itemize}
     \item Mol* platform
-    \item Mol* Volumes and Segmentation (Mol* VS)
+    \item Mol* Volumes and Segmentation (Mol* VS) \footfullcite{Chareshneu2024Volseg}
     \begin{itemize}
       \item Difficult to use and maintain
       \item Lacks interoperability
       \item Siloed data formats
     \end{itemize}
-    \item MolViewSpec (MVS)
+    \item MolViewSpec (MVS) \footfullcite{Midlik2025MolViewSpec}
     \begin{itemize}
       \item Declarative standard
       \item Describes ``what'' the scene looks like, not ``how'' to build it
@@ -273,18 +273,12 @@
 \printbibliography[heading=none]
 \end{frame}
 
-\begin{frame}[plain,noframenumbering]
-\vfill
-\centerline{Thank You for Your Attention!}
-\vfill\vfill
-\end{frame}
-
 \newenvironment{outroframe}{
   \begingroup
   \setbeamercolor{background canvas}{bg=mubeamer@label}
-  \setbeamercolor{normal text}{fg=white}
+  \setbeamercolor{normal text}{fg=black}
   \usebeamercolor[fg]{normal text}
-  \begin{frame}[plain, environment=outroframe]
+  \begin{frame}[plain, noframenumbering, environment=outroframe]
   \vfill
   \centering
 }{
@@ -293,11 +287,7 @@
   \endgroup
 }
 \begin{outroframe}
-    \Huge \textbf{Questions?}
-    
-    \vspace{1cm}
-    \large
-    contact@mail.muni.cz
+    \Huge \textbf{Thank You for Your Attention}
 \end{outroframe}
 
 \appendix
