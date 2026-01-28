@@ -23,7 +23,6 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
-% \floatsetup[table]{capposition=top}
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
@@ -49,6 +48,7 @@
 
 \begin{frame}{Theory}{Volumes}
   \begin{itemize}
+    \item Raw measured data from microscopes
     \item 3D scalar grids representing electron density or potential
     \item Isovalue is a threshold used to extract a 3D surface
   \end{itemize}
@@ -62,7 +62,8 @@
 
 \begin{frame}{Theory}{Segmentations}
   \begin{itemize}
-    \item Convert intensity signals into discrete objects
+    \item Gives the raw volumetric data biological meaning
+    \item Convert continuous intensity signals into discrete objects
     \item Lattices, meshes, geometric primitives
   \end{itemize}
   \begin{figure}
@@ -105,35 +106,33 @@
 
 \begin{frame}{Conversion Library}
   \begin{itemize}
-    \item \textbf{Extract:} Validate and parse CVSX file
-    \item \textbf{Transform:} Convert to intermediate representation
-    \item \textbf{Load:} Serialize to MVSX file
+    \item \textbf{Extract:} Read CVSX file contents
+    \item \textbf{Transform:} Convert CVSX primitives to MVSX analogues
+    \item \textbf{Load:} Serialize to MVS file formats
   \end{itemize}
   \begin{figure}
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./images/etl-overview-crop.pdf}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/etl-overview.pdf}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Conversion Library --- Implementation}{Volumetric Data}
   \begin{figure}
     \centering
-    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/volume-mapping-crop.pdf}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/volume.pdf}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Conversion Library --- Implementation}{Lattice Segmentation}
   \begin{figure}
     \centering
-    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/lattice-mapping-crop.pdf}
-    % \caption{Mapping CVSX to MVSX}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/lattice.pdf}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Conversion Library --- Implementation}{Mesh \& Geometric Segmentation}
+\begin{frame}{Conversion Library --- Implementation}{Geometric \& Mesh Segmentation}
   \begin{figure}
     \centering
-    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
-    % \caption{Mapping CVSX to MVSX}
+    \includegraphics[width=1\textwidth,keepaspectratio]{./images/geo-mesh.pdf}
   \end{figure}
 \end{frame}
 
