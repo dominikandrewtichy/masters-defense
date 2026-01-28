@@ -23,7 +23,7 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
-\floatsetup[table]{capposition=top}
+% \floatsetup[table]{capposition=top}
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
@@ -90,7 +90,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Conversion Library --- Architecture}
+\begin{frame}{Conversion Library}
   \begin{itemize}
     \item \textbf{Extract:} Validate and parse CVSX file
     \item \textbf{Transform:} Convert to intermediate representation
@@ -101,14 +101,14 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Volumetric Data}
+\begin{frame}{Conversion Library}{Volumetric Data}
   \begin{figure}
     \centering
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/volume-mapping-crop.pdf}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Lattice Segmentation}
+\begin{frame}{Conversion Library}{Lattice Segmentation}
   \begin{figure}
     \centering
     \includegraphics[height=0.85\textheight,keepaspectratio]{./images/lattice-mapping-crop.pdf}
@@ -116,10 +116,10 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Mesh \& Geometric Segmentation}
+\begin{frame}{Conversion Library}{Mesh \& Geometric Segmentation}
   \begin{figure}
     \centering
-    \includegraphics[height=0.9\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
+    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
     % \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
@@ -129,29 +129,12 @@
   \begin{itemize}
     \item Verified on 14 diverse datasets from EMDB, IDR, EMPIAR
   \end{itemize}
-
-  \textbf{File Size:}
-  \begin{itemize}
-    \item Minimal overhead ($<5\%$) for most mappings
-    \item Except for lattice-to-mesh conversion ($10-50\%$)
-  \end{itemize}
-  
-  \textbf{Improvements:}
-  \begin{itemize}
-    \item Fixed missing volumes, restored color annotations
-    \item Corrected author-defined contour levels
-    \item Proper isosurface capping
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Conversion Library --- Results}
-  Verified on 14 diverse datasets from EMDB, IDR, EMPIAR
   \begin{table}[htbp]
     \centering
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{l r@{${}\times{}$}r@{${}\times{}$}r@{${}\times{}$}r@{${}\times{}$}l lrr}
+    \begin{tabular}{l r@{${}\times{}$}r@{${}\times{}$}l lrr}
       \toprule
-      \textbf{Dataset ID} & \multicolumn{3}{c}{\textbf{Image dimensions (XYZ)}} & \textbf{Seg. type} & \textbf{Seg. count} & \textbf{Size (MB)} \\
+      \textbf{Dataset ID} & \multicolumn{5}{c}{\textbf{Image dimensions (XYZ)}} & \textbf{Seg. type} & \textbf{Seg. count} & \textbf{Size (MB)} \\
       \midrule
       \href{https://www.ebi.ac.uk/emdb/EMD-1832}{EMD-1832} & 64 & 64 & 64 & Lattice & 1 & 0.09 \\
       \href{https://www.ebi.ac.uk/emdb/EMD-1273}{EMD-1273} & 2048 & 2048 & 76 & Lattice & 5 & 39.78 \\
@@ -171,6 +154,21 @@
     \end{tabular}
     }
   \end{table}
+\end{frame}
+
+\begin{frame}{Conversion Library --- Results}
+  \textbf{File Size:}
+  \begin{itemize}
+    \item Minimal overhead ($<5\%$) for most mappings
+    \item Except for lattice-to-mesh conversion ($10-50\%$)
+  \end{itemize}
+  
+  \textbf{Improvements:}
+  \begin{itemize}
+    \item Fixed missing volumes, restored color annotations
+    \item Corrected author-defined contour levels
+    \item Proper isosurface capping
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Conversion Library --- Improvements}
