@@ -23,6 +23,7 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
+\floatsetup[table]{capposition=top}
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
@@ -143,6 +144,35 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Conversion Library --- Results}
+  Verified on 14 diverse datasets from EMDB, IDR, EMPIAR
+  \begin{table}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{l r@{${}\times{}$}r@{${}\times{}$}r@{${}\times{}$}r@{${}\times{}$}l lrr}
+      \toprule
+      \textbf{Dataset ID} & \multicolumn{3}{c}{\textbf{Image dimensions (XYZ)}} & \textbf{Seg. type} & \textbf{Seg. count} & \textbf{Size (MB)} \\
+      \midrule
+      \href{https://www.ebi.ac.uk/emdb/EMD-1832}{EMD-1832} & 64 & 64 & 64 & Lattice & 1 & 0.09 \\
+      \href{https://www.ebi.ac.uk/emdb/EMD-1273}{EMD-1273} & 2048 & 2048 & 76 & Lattice & 5 & 39.78 \\
+      \href{https://www.ebi.ac.uk/emdb/EMD-19111}{EMD-19111} & 440 & 440 & 440 & - & - & 12.15 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/6001240}{IDR-6001240} & 271 & 275 & 236 & Lattice & 1 & 40.66 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/6001247}{IDR-6001247} & 253 & 210 & 257 & Lattice & 1 & 35.43 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/13457537}{IDR-13457537} & 198 & 223 & 12 & Lattice & 1 & 28.03 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/5514375}{IDR-5514375} & 256 & 256 & 31 & Lattice & 2 & 493.08 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/5025551}{IDR-5025551} & 2702 & 2700 & 1 & - & - & 65.92 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/5025552}{IDR-5025552} & 2701 & 2701 & 64 & - & - & 63.29 \\
+      \href{https://idr.openmicroscopy.org/webclient/img_detail/5025553}{IDR-5025553} & 2500 & 2500 & 64 & - & - & 96.63 \\
+      \href{https://www.ebi.ac.uk/empiar/EMPIAR-10070}{EMPIAR-10070} & 1675 & 1595 & 291 & Mesh & 1 & 56.30 \\
+      \href{https://www.ebi.ac.uk/empiar/EMPIAR-11756}{EMPIAR-11756} & 1024 & 1024 & 512 & Geometric & 1164 & 3.93 \\
+      \href{https://cryoetdataportal.czscience.com/runs/17803}{CUSTOM-19420} & 1260 & 1260 & 368 & - & - & 32.22 \\
+      \href{https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html}{CUSTOM-TUBHISWT} & 512 & 512 & 10 & - & - & 106.10 \\
+      \bottomrule
+    \end{tabular}
+    }
+  \end{table}
+\end{frame}
+
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
@@ -239,9 +269,7 @@
     Narazil jste na nějakou vlastnost nebo typ dat z formátu CVSX, kterou nebylo možno převést do nových formátů MVSX a MVStory?
   \end{block}
   \begin{itemize}
-    \item Ano, uživatelské rozhraní pro Mol* VS klienta a CVSX metadata (např. dimenzionalita volumetrických dat)
-    \item Uživatelské rozhraní lze nahradit novým rozšířením Mol* za pomocí metadat v MVS souboru
-    \item MVS metadata lze využít i pro CVSX metadata
+    \item Ano, MolViewSpec nemá zatím přímou podporu pro segmentace
   \end{itemize}
 \end{frame}
 
@@ -252,8 +280,8 @@
     Je nějaký limit velikosti dat, nad který není vaše webová aplikace schopna data zobrazit?
   \end{block}
   \begin{itemize}
-    \item Ano, velikost dat je omezena možnostmi Mol* Vieweru
-    \item Závisí na velikosti RAM stroje a nastavení limitů pro paměť v prohlížeči
+    \item Ano, velikost dat je omezena možnostmi Mol*
+    \item Největší testovací dataset 500 MB
   \end{itemize}
 \end{frame}
 
@@ -264,13 +292,21 @@
     Jak by bylo možno odstranit drobné vizuální odchylky v renderování, které zmiňujete v sekci 3.4.4?
   \end{block}
   \begin{itemize}
-    \item Ano, lze porovnat verze Mol* VS a upstream Mol*
+    \item Ano, stačí porovnat verze Mol* VS a upstream Mol*
   \end{itemize}
+\end{frame}
+
+\section{Bonus slides}
+
+\subsection{Visual deviations}
+
+\begin{frame}[noframenumbering]
   \begin{figure}
     \centering
-    \subfigure[CVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/cvsx-slice.png}}
+    \subfigure[CVSX]{\includegraphics[height=0.4\textheight,keepaspectratio]{images/cvsx-slice.png}}
     \hspace{1cm}
-    \subfigure[MVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/mvsx-slice.png}}
+    \subfigure[MVSX]{\includegraphics[height=0.4\textheight,keepaspectratio]{images/mvsx-slice.png}}
+    \subfigure[Vizarr]{\includegraphics[height=0.4\textheight,keepaspectratio]{images/original.png}}
   \end{figure}  
 \end{frame}
 
