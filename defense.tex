@@ -38,8 +38,6 @@
 \maketitle
 \end{frame}
 
-\section[Motivation]{Motivation}
-
 \begin{frame}{Motivation}
   \begin{itemize}
     \item Rapid growth of microscopy data (e.g., Cryo-EM, Cryo-ET) \footfullcite{kuhlbrandt2014resolution}
@@ -59,6 +57,9 @@
     \item Convert intensity signals into discrete objects
     \item Lattices, meshes, geometric primitives
   \end{itemize}
+  \begin{figure}
+    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/Gemini_Generated_Image_97q74g97q74g97q7.png}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Mol*}
@@ -78,14 +79,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Mol*}{File Formats}
-  \begin{figure}
-    \includegraphics[width=1\textwidth,height=0.8\textheight,keepaspectratio]{./images/volseg-arch.pdf}
-    % \caption{Mol* VS Architecture}
-  \end{figure}
-\end{frame}
-
-
 \begin{frame}{Goals}
   \begin{alertblock}{Thesis Objective}
     Show that MolViewSpec can be used to visualize and annotate volumetric and segmentation data in Mol*
@@ -96,30 +89,14 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Data Mapping}
+\begin{frame}{Conversion Library --- Architecture}
   \begin{itemize}
-    \item \textbf{Volumes}
-    \begin{itemize}
-      \item 3D scalar grids representing electron density or potential
-      \item Isosurface, grid slice
-    \end{itemize}
-    \item \textbf{Segmentations}
-    \begin{itemize}
-      \item Convert intensity signals into discrete objects
-      \item Lattices, meshes, geometric primitives
-    \end{itemize}
-    \item \textbf{Annotations}
-    \begin{itemize}
-      \item Define semantic meaning and visual styling
-      \item Examples include color, opacity, and labels
-    \end{itemize}
+    \item \textbf{Extract:} Validate and parse CVSX file
+    \item \textbf{Transform:} Convert to intermediate representation
+    \item \textbf{Load:} Serialize to MVSX file
   \end{itemize}
-\end{frame}
-
-\begin{frame}{Data Mapping}
   \begin{figure}
-    \includegraphics[width=1\textwidth,keepaspectratio]{./images/segmentation-comparison.png}
-    % \caption{Segmentation types.}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./images/etl-overview-crop.pdf}
   \end{figure}
 \end{frame}
 
@@ -127,7 +104,6 @@
   \begin{figure}
     \centering
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/volume-mapping-crop.pdf}
-    % \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
 
@@ -143,19 +119,6 @@
   \begin{figure}
     \centering
     \includegraphics[height=0.9\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
-    % \caption{Mapping CVSX to MVSX}
-  \end{figure}
-\end{frame}
-
-
-\begin{frame}{Conversion Library --- Architecture}
-  \begin{itemize}
-    \item \textbf{Extract:} Validate and parse CVSX file
-    \item \textbf{Transform:} Convert to intermediate representation
-    \item \textbf{Load:} Serialize to MVSX file
-  \end{itemize}
-  \begin{figure}
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./images/etl-overview-crop.pdf}
     % \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
@@ -183,9 +146,9 @@
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
-    \subfigure[CVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-cvsx.png}}
+    \subfigure[CVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/idr-6001240-cvsx.png}}
     \hspace{1cm}
-    \subfigure[MVSX]{\includegraphics[width=0.4\textwidth]{images/idr-6001240-mvsx.png}}
+    \subfigure[MVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/idr-6001240-mvsx.png}}
   \end{figure}  
   \textbf{Improvements:}
   \begin{itemize}
@@ -198,9 +161,9 @@
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
-    \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-cvsx.png}}
-    \hspace{1.5cm}
-    \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/missing-face-mvsx.png}}
+    \subfigure[CVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/contour-missing.png}}
+    \hspace{1cm}
+    \subfigure[MVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/contour-present.png}}
   \end{figure}  
   \textbf{Improvements:}
   \begin{itemize}
@@ -213,10 +176,11 @@
 \begin{frame}{Conversion Library --- Improvements}
   \begin{figure}
     \centering
-    \subfigure[CVSX]{\includegraphics[width=0.3\textwidth]{images/contour-missing.png}}
-    \hspace{1.5cm}
-    \subfigure[MVSX]{\includegraphics[width=0.3\textwidth]{images/contour-present.png}}
+    \subfigure[CVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/missing-face-cvsx.png}}
+    \hspace{1cm}
+    \subfigure[MVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/missing-face-mvsx.png}}
   \end{figure}  
+  \textbf{Improvements:}
   \begin{itemize}
     \item Fixed missing volumes, restored color annotations
     \item Corrected author-defined contour levels
@@ -227,13 +191,13 @@
 \begin{frame}{Web Application}
   \begin{itemize}
     \item The library is a CLI tool; biologists need a GUI
-    \item \textbf{WYSIWYG Editor}: Interactively update colors, opacities, and isovalues
-    \item \textbf{Sharing}: Persistent URLs and export to MolViewStories
+    \item Interactively update annotations
+    \item Collaboration
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Web Application}{Implementation}
-  \textbf{Main Components:}
+  \textbf{Architecture:}
   \begin{itemize}
     \item \textbf{Frontend:} React
     \item \textbf{Backend:} FastAPI
@@ -255,12 +219,11 @@
   \end{figure}
 \end{frame}
 
-
 \begin{frame}{Conclusion}
   \begin{itemize}
     \item Replaced the Mol* VS client with MolViewSpec
     \item Conversion library for data migration
-    \item Web application for visualizing and sharing
+    \item Web application for visualizing and annotating
     \item Contributed to a paper \footfullcite{Chareshneu2024Volseg}
   \end{itemize}
 \end{frame}
@@ -301,8 +264,14 @@
     Jak by bylo možno odstranit drobné vizuální odchylky v renderování, které zmiňujete v sekci 3.4.4?
   \end{block}
   \begin{itemize}
-    \item answer
+    \item Ano, lze porovnat verze Mol* VS a upstream Mol*
   \end{itemize}
+  \begin{figure}
+    \centering
+    \subfigure[CVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/cvsx-slice.png}}
+    \hspace{1cm}
+    \subfigure[MVSX]{\includegraphics[height=0.5\textheight,keepaspectratio]{images/mvsx-slice.png}}
+  \end{figure}  
 \end{frame}
 
 \makeoutro
