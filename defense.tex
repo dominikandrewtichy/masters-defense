@@ -50,7 +50,14 @@
 \begin{frame}{Theory}{Volumes}
   \begin{itemize}
     \item 3D scalar grids representing electron density or potential
+    \item Isovalue is a threshold used to extract a 3D surface
   \end{itemize}
+  \begin{figure}
+    \centering
+    \subfigure[$v=0.05$]{\includegraphics[width=0.3\textwidth,keepaspectratio]{images/1832-005.png}}
+    \subfigure[$v=0.15$]{\includegraphics[width=0.3\textwidth,keepaspectratio]{images/1832-015.png}}
+    \subfigure[$v=0.30$]{\includegraphics[width=0.3\textwidth,keepaspectratio]{images/1832-03.png}}
+  \end{figure}  
 \end{frame}
 
 \begin{frame}{Theory}{Segmentations}
@@ -59,7 +66,7 @@
     \item Lattices, meshes, geometric primitives
   \end{itemize}
   \begin{figure}
-    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/Gemini_Generated_Image_97q74g97q74g97q7.png}
+    \includegraphics[height=0.6\textheight,keepaspectratio]{./images/Gemini_Generated_Image_97q74g97q74g97q7.png}
   \end{figure}
 \end{frame}
 
@@ -77,6 +84,12 @@
       \item Declarative standard
       \item Describes ``what'' the scene looks like, not ``how'' to build it
     \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mol*}{Formats}
+  \begin{itemize}
+    \item compare CVSX and MVSX side by side
   \end{itemize}
 \end{frame}
 
@@ -101,22 +114,22 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Conversion Library}{Volumetric Data}
+\begin{frame}{Conversion Library --- Implementation}{Volumetric Data}
   \begin{figure}
     \centering
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/volume-mapping-crop.pdf}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Conversion Library}{Lattice Segmentation}
+\begin{frame}{Conversion Library --- Implementation}{Lattice Segmentation}
   \begin{figure}
     \centering
-    \includegraphics[height=0.85\textheight,keepaspectratio]{./images/lattice-mapping-crop.pdf}
+    \includegraphics[height=0.8\textheight,keepaspectratio]{./images/lattice-mapping-crop.pdf}
     % \caption{Mapping CVSX to MVSX}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Conversion Library}{Mesh \& Geometric Segmentation}
+\begin{frame}{Conversion Library --- Implementation}{Mesh \& Geometric Segmentation}
   \begin{figure}
     \centering
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/segm-mapping-crop.pdf}
@@ -134,7 +147,7 @@
     \resizebox{\textwidth}{!}{
     \begin{tabular}{l r@{${}\times{}$}r@{${}\times{}$}l lrr}
       \toprule
-      \textbf{Dataset ID} & \multicolumn{5}{c}{\textbf{Image dimensions (XYZ)}} & \textbf{Seg. type} & \textbf{Seg. count} & \textbf{Size (MB)} \\
+      \textbf{Dataset ID} & \multicolumn{3}{c}{\textbf{Image dimensions (XYZ)}} & \textbf{Seg. type} & \textbf{Seg. count} & \textbf{Size (MB)} \\
       \midrule
       \href{https://www.ebi.ac.uk/emdb/EMD-1832}{EMD-1832} & 64 & 64 & 64 & Lattice & 1 & 0.09 \\
       \href{https://www.ebi.ac.uk/emdb/EMD-1273}{EMD-1273} & 2048 & 2048 & 76 & Lattice & 5 & 39.78 \\
@@ -224,7 +237,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Web Application}{Implementation}
+\begin{frame}{Web Application --- Implementation}
   \textbf{Architecture:}
   \begin{itemize}
     \item \textbf{Frontend:} React
@@ -241,7 +254,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Web Application}{Results}
+\begin{frame}{Web Application --- Results}
   \begin{figure}
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/entry-preview.png}
   \end{figure}
@@ -252,7 +265,7 @@
     \item Replaced the Mol* VS client with MolViewSpec
     \item Conversion library for data migration
     \item Web application for visualizing and annotating
-    \item Contributed to a paper \footfullcite{Chareshneu2024Volseg}
+    \item Contributed to a paper \footnote{A. Chareshneu, A. Cantara, \textbf{D. Tichý}, and D. Sehnal. ``Visualizing Volumetric and Segmentation Data using Mol* Volumes \& Segmentations 2.0''. In: \textit{Current Protocols} (2024).}
   \end{itemize}
 \end{frame}
 
@@ -290,7 +303,11 @@
     Jak by bylo možno odstranit drobné vizuální odchylky v renderování, které zmiňujete v sekci 3.4.4?
   \end{block}
   \begin{itemize}
-    \item Ano, stačí porovnat verze Mol* VS a upstream Mol*
+    \item Ano, stačí porovnat verze kódu pro renderování
+    \begin{itemize}
+      \item Mol* VS - v4.3.0
+      \item Mol* - v5.6.1
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -298,7 +315,7 @@
 
 \subsection{Visual deviations}
 
-\begin{frame}[noframenumbering]
+\begin{frame}
   \begin{figure}
     \centering
     \subfigure[CVSX]{\includegraphics[height=0.4\textheight,keepaspectratio]{images/cvsx-slice.png}}
