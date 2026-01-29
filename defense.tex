@@ -42,18 +42,18 @@
 
 \section{Motivation}
 
-\begin{frame}{Motivation}
+\begin{frame}{Microscopy Data}
   \begin{itemize}
     \item Rapid growth of microscopy data (e.g., Cryo-EM, Cryo-ET) \footfullcite{kuhlbrandt2014resolution}
     \item Critical in structural biology and drug design (e.g., SARS-CoV-2 spike protein characterization) \footfullcite {wrapp2020covid}
-    \item Need for a web-based tool to visualize and annotate
+    % \item Need for a web-based tool to visualize and annotate
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Theory}{Volumes}
+\begin{frame}{Microscopy Data}{Volumes}
   \begin{itemize}
     \item Raw measured data from microscopes
-    \item 3D scalar grids representing electron density or potential
+    \item 3D scalar grids representing density values
     \item Isovalue is a threshold used to extract a 3D surface
   \end{itemize}
   \begin{figure}
@@ -64,10 +64,10 @@
   \end{figure}  
 \end{frame}
 
-\begin{frame}{Theory}{Segmentations}
+\begin{frame}{Microscopy Data}{Segmentations}
   \begin{itemize}
     \item Gives the raw volumetric data biological meaning
-    \item Convert continuous intensity signals into discrete objects
+    \item Convert continuous density values into discrete objects
     \item Lattices, meshes, geometric primitives
   \end{itemize}
   \begin{figure}
@@ -75,7 +75,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Mol*}
+\begin{frame}{Visualization}{Mol*}
   \begin{itemize}
     \item Mol* platform \footfullcite{Sehnal2021Molstar}
     \item Mol* Volumes and Segmentation (Mol* VS) \footfullcite{Chareshneu2024Volseg}
@@ -92,7 +92,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Mol*}{File Formats}
+\begin{frame}{Visualization}{Mol* File Formats}
   \centering
   \small
   \begin{table}
@@ -102,11 +102,11 @@
       \midrule
       \textbf{Ecosystem} & Deprecated Mol* VS & State-of-the-art Mol* \\
       \addlinespace
+      \textbf{\makecell[l]{Feature\\Updates}} & No new features & Continuous new features \\
+      \addlinespace
       \textbf{\makecell[l]{Volume\\Support}} & Yes & Yes \\
       \addlinespace
       \textbf{\makecell[l]{Segmentation\\Support}} & Yes & \makecell[l]{No, emulated via\\volumes and primitives} \\
-      \addlinespace
-      \textbf{\makecell[l]{Feature\\Updates}} & No new features & Continuous new features \\
       \bottomrule
     \end{tabularx}
   \end{table}
@@ -130,7 +130,7 @@
   \begin{itemize}
     \item \textbf{Extract:} Read CVSX file contents
     \item \textbf{Transform:} Convert CVSX primitives to MVSX analogues
-    \item \textbf{Load:} Serialize to MVS file formats
+    \item \textbf{Load:} Serialize to MolViewSpec file formats
   \end{itemize}
   \begin{figure}
     \includegraphics[width=1\textwidth,keepaspectratio]{./images/etl-overview.pdf}
