@@ -23,6 +23,7 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
+\usepackage{tabularx}
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
@@ -37,6 +38,8 @@
 \begin{frame}[plain,noframenumbering]
 \maketitle
 \end{frame}
+
+\section{Motivation}
 
 \begin{frame}{Motivation}
   \begin{itemize}
@@ -88,11 +91,49 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Mol*}{Formats}
-  \begin{itemize}
-    \item compare CVSX and MVSX side by side
-  \end{itemize}
+\begin{frame}{Mol*}{File Formats}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+      \textbf{CVSX}
+      \begin{itemize}
+        \item Siloed to Mol* VS
+        \item Limited to volumetric and segmentation data
+        \item Fragmented files
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \textbf{MVSX}
+      \begin{itemize}
+        \item Viewer agnostic
+        \item Extensible with structures
+        \item Single source of truth
+        \item LLM support
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+\begin{frame}{Mol*}{File Formats}
+  \centering
+  \small
+  \begin{table}
+    \begin{tabularx}{\textwidth}{@{} l X X @{}}
+      \toprule
+      \textbf{Feature} & \textbf{CVSX} & \textbf{MVSX} \\
+      \midrule
+      \textbf{Ecosystem} & Siloed to Mol* VS & Viewer agnostic \\
+      \addlinespace
+      \textbf{Data Scope} & Volumes, segmentations only & Extensible (e.g., structures) \\
+      \addlinespace
+      \textbf{Structure} & Fragmented files & Single source of truth \\
+      \addlinespace
+      \textbf{AI} & Difficult to automate & LLM-friendly \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\section{Goals}
 
 \begin{frame}{Goals}
   \begin{alertblock}{Thesis Objective}
@@ -103,6 +144,8 @@
     \item \textbf{Goal 2:} Web application for non-technical users
   \end{itemize}
 \end{frame}
+
+\section{Conversion Library}
 
 \begin{frame}{Conversion Library}
   \begin{itemize}
@@ -228,23 +271,25 @@
   \end{itemize}
 \end{frame}
 
+\section{Web Application}
+
 \begin{frame}{Web Application}
   \begin{itemize}
     \item The library is a CLI tool; biologists need a GUI
-    \item Interactively update annotations
-    \item Collaboration
+    \item Interactively update biological annotations
+    \item Sharing and export
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Web Application --- Implementation}
-  \textbf{Architecture:}
+  \textbf{\color{blue}Architecture}
   \begin{itemize}
     \item \textbf{Frontend:} React
     \item \textbf{Backend:} FastAPI
     \item \textbf{Storage:} PostgreSQL + MinIO
     \item \textbf{Auth:} e-INFRA AAI 
   \end{itemize}
-  \textbf{Infrastructure:}
+  \textbf{\color{blue}Infrastructure}
   \begin{itemize}
     \item Containerized with Docker
     \item Deployed on CERIT-SC Kubernetes cluster
@@ -258,6 +303,8 @@
     \includegraphics[height=0.8\textheight,keepaspectratio]{./images/entry-preview.png}
   \end{figure}
 \end{frame}
+
+\section{Conclusion}
 
 \begin{frame}{Conclusion}
   \begin{itemize}
@@ -305,7 +352,7 @@
     \item Ano, stačí porovnat verze kódu pro renderování
     \begin{itemize}
       \item Mol* VS - v4.3.0
-      \item Mol* - v5.6.1
+      \item Mol* - v5.6.1+
     \end{itemize}
   \end{itemize}
 \end{frame}
