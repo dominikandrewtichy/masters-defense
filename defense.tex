@@ -54,7 +54,7 @@
   \begin{itemize}
     \item Raw measured data from microscopes
     \item 3D scalar grids representing density values
-    \item Isovalue is a threshold used to extract a 3D surface
+    \item Isosurface levels are thresholds used to extract a 3D surface
   \end{itemize}
   \begin{figure}
     \centering
@@ -126,7 +126,7 @@
 
 \section{Conversion Library}
 
-\begin{frame}{Conversion Library}
+\begin{frame}{Conversion Library --- Design}
   \begin{itemize}
     \item \textbf{Extract:} Read CVSX file contents
     \item \textbf{Transform:} Convert CVSX primitives to MVSX analogues
@@ -200,7 +200,7 @@
   \textbf{Improvements:}
   \begin{itemize}
     \item Fixed missing volumes, restored color annotations
-    \item Corrected author-defined contour levels
+    \item Corrected author-defined isosurface levels
     \item Proper isosurface capping
   \end{itemize}
 \end{frame}
@@ -215,7 +215,7 @@
   \textbf{Improvements:}
   \begin{itemize}
     \item \alert{Fixed missing volumes, restored color annotations}
-    \item Corrected author-defined contour levels
+    \item Corrected author-defined isosurface levels
     \item Proper isosurface capping
   \end{itemize}
 \end{frame}
@@ -230,7 +230,7 @@
   \textbf{Improvements:}
   \begin{itemize}
     \item Fixed missing volumes, restored color annotations
-    \item \alert{Corrected author-defined contour levels}
+    \item \alert{Corrected author-defined isosurface levels}
     \item Proper isosurface capping
   \end{itemize}
 \end{frame}
@@ -245,7 +245,7 @@
   \textbf{Improvements:}
   \begin{itemize}
     \item Fixed missing volumes, restored color annotations
-    \item Corrected author-defined contour levels
+    \item Corrected author-defined isosurface levels
     \item \alert{Proper isosurface capping}
   \end{itemize}
 \end{frame}
@@ -287,7 +287,7 @@
 
 \begin{frame}{Conclusion}
   \begin{itemize}
-    \item Replaced the Mol* VS client with MolViewSpec
+    \item Replaced the Mol* VS with MolViewSpec
     \item Conversion library for data migration
     \item Web application for visualizing and annotating
     \item Contributed to a paper \footnote{A. Chareshneu, A. Cantara, \textbf{D. Tichý}, and D. Sehnal. ``Visualizing Volumetric and Segmentation Data using Mol* Volumes \& Segmentations 2.0''. In: \textit{Current Protocols} (2024).}
