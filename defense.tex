@@ -24,6 +24,7 @@
 \usepackage{tikz}
 \usepackage{appendixnumberbeamer}
 \usepackage{tabularx}
+\usepackage{makecell}
 
 \title[Visualisation and Annotation of VolSeg Data in Mol*]{Lightweight Visualisation and Annotation of Volumetric and Segmentation Data in Mol*}
 \subtitle[Master's Thesis Defense]{Master's Thesis Defense}
@@ -97,15 +98,15 @@
   \begin{table}
     \begin{tabularx}{\textwidth}{@{} l X X @{}}
       \toprule
-      \textbf{Feature} & \textbf{CVSX} & \textbf{MVSX} \\
+      & \textbf{CVSX} & \textbf{MVSX} \\
       \midrule
-      \textbf{Ecosystem} & Siloed to Mol* VS & Viewer agnostic \\
+      \textbf{Ecosystem} & Deprecated Mol* VS & State-of-the-art Mol* \\
       \addlinespace
-      \textbf{Data Scope} & Volumes, segmentations only & Extensible (e.g., structures) \\
+      \textbf{\makecell[l]{Volume\\Support}} & Yes & Yes \\
       \addlinespace
-      \textbf{Structure} & Fragmented files & Single source of truth \\
+      \textbf{\makecell[l]{Segmentation\\Support}} & Yes & \makecell[l]{No, emulated via\\volumes and primitives} \\
       \addlinespace
-      \textbf{AI} & Difficult to automate & LLM-friendly \\
+      \textbf{\makecell[l]{Feature\\Updates}} & No new features & Continuous new features \\
       \bottomrule
     \end{tabularx}
   \end{table}
@@ -114,7 +115,7 @@
 \section{Goals}
 
 \begin{frame}{Goals}
-  \begin{alertblock}{Thesis Objective}
+  \begin{alertblock}{\textbf{Thesis Objective}}
     Show that MolViewSpec can be used to visualize and annotate volumetric and segmentation data in Mol*
   \end{alertblock}
   \begin{itemize}
